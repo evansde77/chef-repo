@@ -1,0 +1,104 @@
+{
+  "name": "sapi_testing",
+  "description": "Test environment specific to SAPI test-machine(s)",
+  "cookbook_versions": {
+
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+    "redisio": {
+      "servers": [
+
+      ]
+    },
+    "redisio_ext": {
+      "master": {
+        "host": "sapi1.sapitest001.cloudant.com"
+      }
+    },
+    "cloudant_sapi": {
+      "gearbox_queues": {
+        "default": {
+          "workers": 64
+        }
+      },
+      "applications": {
+        "wilson": {
+          "installs": {
+            "wilson": "0.12.170"
+          }
+        },
+        "emissions_test": {
+          "installs": {
+            "emissions_test": "0.0.23"
+          }
+        },
+        "flask_azure": {
+          "installs": {
+            "flask_azure": "0.5.10"
+          }
+        },
+        "ignition": {
+          "installs": {
+            "ignition": "0.1.56"
+          }
+        },
+        "manifold": {
+          "installs": {
+            "manifold": "0.0.45"
+          }
+        },
+        "gearbox": {
+          "installs": {
+            "forecast": "0.3.19",
+            "gearbox": "0.1.72"
+          }
+        }
+      }
+    },
+    "sensu": {
+      "api_external": {
+        "host": "sensu-dev.cloudant.com"
+      }
+    },
+    "sensu-ext": {
+      "redis": {
+        "address": "sensu-dev.cloudant.com"
+      },
+      "rabbitmq": {
+        "address": "sensu-dev.cloudant.com"
+      },
+      "default_handlers": [
+        "debug"
+      ],
+      "paging_handlers": [
+        "debug"
+      ],
+      "metric_handlers": [
+        "debug"
+      ],
+      "additional_client_attributes": {
+
+      },
+      "handlers": {
+        "mail": {
+          "alerts": {
+            "recipients": "sensu+dev@cloudantcom",
+            "from": "Sensu-Dev"
+          }
+        },
+        "irc": {
+          "server": "irc://sensubot@irc.freenode.net:6667#cloudant-sensu-dev",
+          "ssl": false
+        },
+        "logstash": {
+          "type": "sensu-dev"
+        }
+      }
+    }
+  }
+}

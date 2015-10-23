@@ -1,0 +1,44 @@
+{
+  "name": "sapi",
+  "description": "Base recipe list for a SAPI node.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+    "cloudant_sapi": {
+      "emissions_test": {
+        "run_system_test": true
+      }
+    },
+    "sysctl": {
+      "net": {
+        "core": {
+          "somaxconn": 65535
+        }
+      }
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[base_linux]",
+    "recipe[clustersdb]",
+    "recipe[nettune::interrupt_pinning]",
+    "recipe[cloudant-sapi::gearbox]",
+    "recipe[nginx::gearbox_monitor]",
+    "recipe[cloudant-sapi::gearbox_monitor]",
+    "recipe[cloudant-sapi::emissions_test]"
+  ],
+  "env_run_lists": {
+    "primordial": [
+      "role[base_linux]",
+      "recipe[clustersdb]",
+      "recipe[clusty::decom]",
+      "recipe[nettune::interrupt_pinning]",
+      "recipe[cloudant-sapi::gearbox]",
+      "recipe[nginx::gearbox_monitor]",
+      "recipe[cloudant-sapi::gearbox_monitor]",
+      "recipe[cloudant-sapi::emissions_test]"
+    ]
+  }
+}
