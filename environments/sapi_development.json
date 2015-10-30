@@ -1,27 +1,20 @@
 {
-  "name": "sapi_development",
-  "description": "",
-  "cookbook_versions": {
-
-  },
-  "json_class": "Chef::Environment",
-  "chef_type": "environment",
-  "default_attributes": {
-
-  },
+  "chef_type": "environment", 
+  "default_attributes": {}, 
+  "name": "sapi_development", 
   "override_attributes": {
     "cloudant_sapi": {
       "gearbox_queues": {
         "default": {
           "workers": 64
         }
-      },
+      }, 
       "applications": {
         "wilson": {
           "installs": {
             "wilson": "0.0.22"
           }
-        },
+        }, 
         "emissions_test": {
           "installs": {
             "emissions_test": "0.0.23"
@@ -29,5 +22,8 @@
         }
       }
     }
-  }
+  }, 
+  "cookbook_versions": {}, 
+  "json_class": "Chef::Environment", 
+  "description": ""
 }
